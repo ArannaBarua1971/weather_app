@@ -1,30 +1,33 @@
 const options = {
-	method: 'GET',
-	headers: {
-		'X-RapidAPI-Key': 'ebe032694cmsh985fe3c5d018e09p193579jsnac5e26aa8eec',
-		'X-RapidAPI-Host': 'weather-by-api-ninjas.p.rapidapi.com'
-	}
+  method: "GET",
+  headers: {
+    "X-RapidAPI-Key": "ebe032694cmsh985fe3c5d018e09p193579jsnac5e26aa8eec",
+    "X-RapidAPI-Host": "weather-by-api-ninjas.p.rapidapi.com",
+  },
 };
-// city information
-let obj=JSON.stringify({});
 
-fetch('https://weather-by-api-ninjas.p.rapidapi.com/v1/weather?city=Kotwali', options)
-	.then(response => response.json())
-	.then(data => {
-		
-		let cloud_pct=data.cloud_pct;
-		let temp=data.temp;
-		let feels_like=data.feels_like;
-		let humidity=data.humidity;
-		let min_temp=data.min_temp;
-		let max_temp=data.max_temp;
-		let wind_speed=data.wind_speed;
-		let wind_degrees=data.wind_degrees;
-		let sunrise=data.sunrise;
-		let sunset=data.sunset;
-	})
-	.catch(err => console.error(err));
-
-
-
-console.log(obj);
+fetchData = () => {
+	const cityName=document.getElementById('cityName').value;
+	const city=document.getElementById('city');
+  fetch(
+    `https://weather-by-api-ninjas.p.rapidapi.com/v1/weather?city=${cityName}`,
+    options
+    )
+    .then((response) => response.json())
+    .then((data) => {
+      city.innerHTML=cityName.toUpperCase();
+      temp.innerHTML = data.temp;
+      temp2.innerHTML = data.temp;
+      max_temp.innerHTML = data.max_temp;
+      min_temp.innerHTML = data.min_temp;
+      humidity.innerHTML = data.humidity;
+      humidity2.innerHTML = data.humidity;
+      feels_like.innerHTML = data.feels_like;
+      wind_degrees.innerHTML = data.wind_degrees;
+      sunrise.innerHTML = data.sunrise;
+      sunset.innerHTML = data.sunset;
+      wind_speed.innerHTML = data.wind_speed;
+      wind_speed2.innerHTML = data.wind_speed;
+    })
+    .catch((err) => console.error(err));
+};
